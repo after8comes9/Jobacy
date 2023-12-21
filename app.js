@@ -16,8 +16,11 @@ app.use(cookieParser());
 // Connect to Database
 connectDB();
 
-// Static Files
-app.use(express.static('public'));
+// Static Files No Vercel
+// app.use(express.static('public'));
+
+// Static Files for Vercel
+app.use(express.static(__dirname + '/public'));
 
 // Templating Engine
 app.set('view engine', 'ejs');
