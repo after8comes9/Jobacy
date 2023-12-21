@@ -23,7 +23,9 @@ connectDB();
 app.use(express.static(__dirname + '/public'));
 
 // Templating Engine
+app.set("views", __dirname + "/views"); // FOR VERCEL
 app.set('view engine', 'ejs');
+
 
 // Routes
 app.use('/', require('./server/routes/auth'));
@@ -38,3 +40,5 @@ app.get('*', function(req, res) {
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
+
+module.exports = app; // FOR VERCEL
