@@ -1,0 +1,67 @@
+
+<%- include('../partials/loggedInHeader.ejs'); -%>
+
+<div class="pageTitle"><h1>My Profile</h1></div>
+
+
+<div class="backDash">
+    <a href="/dashboard">< back to dashboard</a>
+    <div class="buttons">
+
+        <button id="editBtn">
+            <div>
+                <img src="/img/edit.svg" alt="">
+            </div>
+            Edit</button>
+
+        <button id="saveBtn" type="submit" form="profileForm">
+            <div>
+                <img src="/img/save.svg" alt="">
+            </div>
+            Save</button>
+        <button id="cancelBtn">
+            <div>
+                <img src="/img/cancel.svg" alt="">
+            </div>
+            Cancel</button>
+    </div>
+</div>
+
+<form action="/dashboard/myProfile/<%= user.id %>?_method=PUT" id="profileForm" method="POST">
+    <label for="firstName">First Name: </label>
+    <input id="firstName" type="text" class="profileFormElement" name="firstName" value="<%= user.firstName %>" placeholder="First Name" required disabled />
+    <div class="firstName error"></div>
+    <label for="lastName">Last Name: </label>
+    <input id="lastName" type="text" class="profileFormElement" name="lastName" value="<%= user.lastName %>" placeholder="Last Name" required disabled />
+    <div class="lastName error"></div>
+    <label for="email">Email: </label>
+    <input id="email" type="text" class="profileFormElement" name="email" value="<%= user.email %>" placeholder="email" disabled/>
+    <div class="email error"><%= locals.emailError %></div>
+    <label for="gitHub">GitHub Username: </label>
+    <input id="gitHub" type="text" class="profileFormElement" name="gitHub" value="<%= user.gitHub %>" placeholder="gitHub username" disabled/>
+    <div class="gitHub error"></div>
+    <a id="changePasswordBtn" href="/dashboard/changePassword/<%= user.id %>">change password</a>
+</form>
+<%- include('../partials/footer.ejs'); -%>
+
+<script>
+    const formElements = document.querySelectorAll(".profileFormElement");
+    const editBtn = document.getElementById('editBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const saveBtn = document.getElementById('saveBtn');
+
+    editBtn.addEventListener('click', () => {
+        editBtn.style.display = "none";
+        saveBtn.style.display = "flex";
+        cancelBtn.style.display = "flex";
+
+        for (i = 0; i < formElements.length; ++i) {
+            formElements[i].style.border = "solid 1px #0166ff";
+            formElements[i].removeAttribute("disabled");
+        }
+    });
+
+    cancelBtn.addEventListener('click', () => {
+        location.reload()
+    });
+</script>

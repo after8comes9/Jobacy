@@ -1,0 +1,24 @@
+<%- include('../partials/loggedInHeader.ejs'); -%>
+
+<% if (jobs.length > 0) { %>
+<h1 class="dashboardTitle">Your ongoing job applications:</h1>
+    <div class="jobs">
+
+  <%    for(var i=0; i < jobs.length; i++) { %>
+
+    <a href="/dashboard/item/<%= jobs[i]._id %>">
+      <div class="job">
+          <div class="jobTitle"><%= jobs[i].jobTitle %></div>
+          <div class="companyName">at <%= jobs[i].companyName %></div>
+      </div>
+    </a>
+
+<% } } else { %>
+  <h1 class="dashboardTitle">Let's start tracking your first job application</h1>
+<% } %>
+    </div>
+<div class="addJob">
+    <a href="/dashboard/add">+ Add a job</a>
+</div>
+
+<%- include('../partials/footer.ejs'); -%>

@@ -1,0 +1,53 @@
+<%- include('../partials/loggedInHeader.ejs'); -%>
+
+<div class="pageTitle"><h1>Add a job</h1></div>
+
+<div class="backDash">
+  <a href="/dashboard">< back to dashboard</a>
+  <div class="buttons">
+    <button id="saveBtnVisible" type="submit" form="jobForm">
+      <div>
+        <img src="/img/save.svg" alt="">
+      </div>
+      Save</button>
+  </div>
+</div>
+
+<div class="viewJobContainer">
+  <form action="/dashboard/add" method="POST" class="jobForm" id="jobForm">
+    <label for="jobTitle"></label>
+    <input id="jobTitle" type="text" class="jobFormElements" name="jobTitle" placeholder="Job Title" required />
+    <label for="companyName"></label>
+    <input id="companyName" type="text" class="jobFormElements" name="companyName" placeholder="Company Name" required />
+    <label for="website"></label>
+    <input id="website" type="url" class="jobFormElements" name="website" placeholder="Website"/>
+    <p class="sectionTitle">Contact of the Employer</p>
+    <label for="contactName"></label>
+    <input id="contactName" type="text" class="jobFormElements" name="contactName" placeholder="Contact Name"/>
+    <label for="contactEmail"></label>
+    <input id="contactEmail" type="email" class="jobFormElements" name="contactEmail" placeholder="Contact Email"/>
+    <label for="contactPhone"></label>
+    <input id="contactPhone" type="number" class="jobFormElements" name="contactPhone" placeholder="Contact Phone"/>
+    <label for="address"></label>
+    <input id="address" type="text" class="jobFormElements" name="address" placeholder="Adress"/>
+    <p class="sectionTitle">Application info</p>
+    <label for="origin"></label>
+    <select id="origin" class="jobFormElements" name="origin">
+      <option value="origin" selected disabled>Origin</option>
+      <option value="candidatureSpontanee">Candidature Spontanée</option>
+      <option value="jobOffer">Job Offer</option>
+    </select>
+    <label for="status"></label>
+    <select id="status" class="jobFormElements" name="status">
+      <option value="status" selected disabled>Status</option>
+      <option value="interested">Interested</option>
+      <option value="cvSent">CV sent</option>
+      <option value="negative">Negative</option>
+      <option value="Interview">Interview</option>
+    </select>
+    <label for="comments"></label>
+    <textarea id="comments" class="jobFormElements" name="comments" rows="5" cols="50" placeholder="Comments"></textarea>
+  </form>
+</div>
+
+<%- include('../partials/footer.ejs'); -%>

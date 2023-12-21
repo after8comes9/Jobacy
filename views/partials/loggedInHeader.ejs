@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%- locals.title %></title>
+  <meta name="description" content="<%- locals.description %>">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<nav>
+    <div class="loggedInHeader">
+        <h1><a href="/dashboard">Job Tracker</a></h1>
+        <ul>
+            <% if (user) { %>
+            <li>Welcome, <a href="/dashboard/myProfile/<%= user.id %>"><%= user.firstName %></a></li>
+            <li><a href="/logout">
+                    <div class="logOutIcon">
+                        <img src="/img/logOut.svg" alt="logOut">
+                    </div>
+                </a>
+            </li>
+    <% } %>
+  </ul>
+    </div>
+</nav>

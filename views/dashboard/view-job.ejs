@@ -1,0 +1,119 @@
+<%- include('../partials/loggedInHeader.ejs'); -%>
+
+<div class="pageTitle"><h1>Your Application</h1></div>
+<div class="backDash">
+  <a href="/dashboard">< back to dashboard</a>
+  <div class="buttons">
+    <form action="/dashboard/item-delete/<%= jobID %>?_method=DELETE" id="deleteForm" method="POST"></form>
+
+    <button id="editBtn">
+      <div>
+        <img src="/img/edit.svg" alt="">
+      </div>
+      Edit</button>
+    <button id="deleteBtn" type="submit" form="deleteForm">
+      <div>
+        <img src="/img/delete.svg" alt="">
+      </div>
+      Delete</button>
+
+    <button id="saveBtn" type="submit" form="jobForm">
+      <div>
+        <img src="/img/save.svg" alt="">
+      </div>
+      Save</button>
+    <button id="cancelBtn">
+      <div>
+        <img src="/img/cancel.svg" alt="">
+      </div>
+      Cancel</button>
+  </div>
+</div>
+
+<div class="viewJobContainer">
+  <form action="/dashboard/item/<%= jobID %>?_method=PUT" class="jobForm" id="jobForm" method="POST">
+    <label for="jobTitle"></label>
+    <input id="jobTitle" type="text" class="jobFormElements" name="jobTitle" value="<%= job.jobTitle %>" placeholder="Job Title" required disabled />
+    <label for="companyName"></label>
+    <input id="companyName" type="text" class="jobFormElements" name="companyName" value="<%= job.companyName %>" placeholder="Company Name" required disabled />
+    <label for="website"></label>
+    <input id="website" type="text" class="jobFormElements" name="website" value="<%= job.website %>" placeholder="Website" disabled/>
+    <p class="sectionTitle">Contact of the Employer</p>
+    <label for="contactName"></label>
+    <input id="contactName" type="text" class="jobFormElements" name="contactName" value="<%= job.contactName %>" placeholder="Contact Name" disabled/>
+    <label for="contactEmail"></label>
+    <input id="contactEmail" type="text" class="jobFormElements" name="contactEmail" value="<%= job.contactEmail %>" placeholder="Contact Email" disabled/>
+    <label for="contactPhone"></label>
+    <input id="contactPhone" type="text" class="jobFormElements" name="contactPhone" value="<%= job.contactPhone %>" placeholder="Contact Phone" disabled/>
+    <label for="address"></label>
+    <input id="address" type="text" class="jobFormElements" name="address" value="<%= job.address %>" placeholder="Address" disabled/>
+    <p class="sectionTitle">Application info</p>
+    <label for="origin"></label>
+    <select id="origin" name="origin" class="jobFormElements" required disabled>
+      <option value="origin" selected disabled>Origin</option>
+      <option value="candidatureSpontanee"
+          <% if (job.origin === "candidatureSpontanee") { %>
+                selected
+          <% }; %>
+        >Candidature Spontanée</option>
+        <option value="jobOffer"
+          <% if (job.origin === "jobOffer") { %>
+                selected
+          <% }; %>
+        >Job Offer</option>
+      </select>
+      <label for="status"></label>
+      <select id="status" name="status" class="jobFormElements" required disabled>
+        <option value="status" selected disabled>Status</option>
+        <option value="interested"
+        <% if (job.status === "interested") { %>
+                selected
+        <% }; %>
+        >Interested</option>
+        <option value="cvSent"
+        <% if (job.status === "cvSent") { %>
+                selected
+        <% }; %>
+        >CV sent</option>
+        <option value="negative" <% if (job.status === "negative") { %>
+                selected
+        <% }; %>
+        >Negative</option>
+        <option value="Interview"
+        <% if (job.status === "Interview") { %>
+                selected
+        <% }; %>
+        >Interview</option>
+      </select>
+
+    <label for="comments"></label>
+    <textarea id="comments" class="jobFormElements" name="comments" rows="5" cols="50" disabled placeholder="Comments"><%= job.comments %></textarea>
+  </form>
+</div>
+
+<%- include('../partials/footer.ejs'); -%>
+
+<script>
+  const formElements = document.querySelectorAll(".jobFormElements");
+  const editBtn = document.getElementById('editBtn');
+  const deleteBtn = document.getElementById('deleteBtn');
+  const cancelBtn = document.getElementById('cancelBtn');
+  const saveBtn = document.getElementById('saveBtn');
+
+  editBtn.addEventListener('click', () => {
+    editBtn.style.display = "none";
+    saveBtn.style.display = "flex";
+    deleteBtn.style.display = "none";
+    cancelBtn.style.display = "flex";
+
+    for (i = 0; i < formElements.length; ++i) {
+      formElements[i].style.border = "solid 1px #0166ff";
+      formElements[i].removeAttribute("disabled");
+    }
+  });
+
+  cancelBtn.addEventListener('click', () => {
+    location.reload()
+  });
+
+</script>

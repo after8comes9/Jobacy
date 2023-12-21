@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+a, a:visited, a:hover, a:active {
+    color: inherit;
+}
+
+a:hover, button:hover {
+    cursor: pointer;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+select:disabled {
+    opacity: 100%;
+}
+
+.header {
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+.loggedInHeader {
+    margin-top: 1rem;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90vw;
+    margin-inline: auto;
+}
+
+.pageTitle {
+    width: 50rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    margin-inline: auto;
+}
+
+.backDash {
+    width: 50rem;
+    margin-inline: auto;
+    margin-block: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.backDash a {
+    text-decoration: none;
+}
+
+.loggedInHeader h1 a {
+    text-decoration: none;
+}
+
+.dashboardTitle {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.header h1, .header h1 a {
+    margin-inline: auto;
+    text-decoration: none;
+    color: #0166ff
+}
+
+.loggedInHeader h1 {
+    color: #0166ff;
+}
+
+.loggedInHeader ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem
+}
+
+.logOutIcon {
+    width: 1.5rem;
+    object-fit: contain;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+#editBtn, #cancelBtn, #saveBtn, #saveBtnVisible, #cancelBtnVisible, #deleteBtn {
+    gap: 0.5rem;
+    width: 5rem;
+    height: 2rem;
+    object-fit: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 1rem;
+    border: solid 1px #0166ff ;
+}
+
+#profileForm {
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    width: 50rem;
+}
+
+#changePasswordForm{
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+}
+
+
+#editBtn img, #cancelBtn img, #saveBtn img, #saveBtnVisible img, #cancelBtnVisible img, #deleteBtn img {
+    height: 1rem;
+}
+
+.indexContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-inline: auto;
+    width: 40rem;
+    text-align: center;
+    flex: 1 0 auto;
+
+}
+
+.indexContainer p {
+    padding-block: 2rem;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.login, .signup {
+    display: grid;
+    align-items: center;
+    background-color:  #0166ff;
+    color: white;
+    width: 100px;
+    height: 40px;
+    text-decoration: none;
+    border-radius: 25px;
+}
+
+.login a, .signup a {
+    color: white;
+    text-decoration: none;
+}
+
+#cancelBtn, #saveBtn {
+    display: none;
+}
+
+#saveBtnVisible {
+    display: flex;
+}
+
+.authContainer {
+    margin-inline: auto;
+    margin-block: 2rem;
+    border-radius: 1.5rem;
+    padding-block: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    background-color: rgba(1, 102, 255, 0.1);
+    width: 30rem;
+}
+
+.authContainer h1 {
+    margin-bottom: 1rem;
+}
+
+.authContainer form{
+    display: flex;
+    flex-direction: column;
+}
+
+.authContainer form input{
+    width: 20rem;
+    border: solid 1px rgba(0, 0, 0, 0.20);
+    height: 2rem;
+    margin-bottom: 1rem;
+}
+
+.authContainer form label{
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+
+
+.authContainer button {
+    background-color: #0166ff;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 0;
+    width: 20rem;
+    height: 3rem;
+    border-radius: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.authContainer a {
+    font-weight: 600;
+}
+
+.error {
+    color: darkred;
+}
+
+.sectionTitle {
+    color: #0166ff;
+    font-weight: 600;
+    font-size: 0.8rem;
+    padding-top: 1rem;
+    padding-left: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: solid 1px rgb(1, 102, 255);
+    margin-bottom: 0.5rem;
+}
+
+::placeholder {
+    color: rgba(0, 0, 0, 0.25);
+}
+
+.jobs {
+    justify-content: center;
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    width: 90vw;
+    margin-inline: auto;
+}
+
+.jobs a {
+    width: 25%;
+    background-color: rgba(1, 102, 255, 0.10);
+    padding: 1rem;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+}
+
+.jobTitle {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.addJob {
+    padding-block: 1rem;
+    width: 90vw;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.companyName {
+    font-weight: 300;
+}
+
+.viewJobContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.jobForm {
+    width: 50rem;
+    margin-bottom: 2rem;
+}
+
+.JobFormElements {
+    width: 50rem;
+    margin: -0.5px;
+    background-color: rgba(1, 102, 255, 0.1);
+    color: black;
+    border: 1px solid white;
+    padding-left: 1.5rem;
+    padding-block: 0.75rem;
+    font-size: 1rem;
+}
+
+#profileForm {
+    width: 50rem;
+}
+
+#changePasswordBtn {
+    margin-top: 1rem;
+    color: #0166ff;
+}
+
+#profileForm label {
+    color: rgba(0, 0, 0, 0.75);
+    font-size: 0.8rem;
+    margin-block: 0.5rem;
+}
+
+.profileFormElement {
+    font-size: 1rem;
+    color: black;
+    background-color: rgba(1, 102, 255, 0.1);
+    padding: 0.5rem;
+    border: none;
+    border: 0;
+}
+
+#jobTitle {
+    color: #0166ff;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+}
+
+#comments {
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    resize: none;
+}
+
+footer {
+    color: grey;
+    font-size: 0.75rem;
+    margin-top: auto;
+    margin-bottom: .5rem;
+    margin-inline: auto
+}

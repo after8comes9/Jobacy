@@ -1,0 +1,92 @@
+<%- include('partials/header'); -%>
+
+<div class="signupBody">
+    <div class="authContainer">
+        <h1>Sign up</h1>
+        <form action="/signup">
+                <label for="firstName">First name</label>
+                <input id= "firstName" type="text" name="firstName" required />
+                <div class="firstName error"></div>
+                <label for="lastName">Last name</label>
+                <input id= "lastName" type="text" name="lastName" required />
+                <div class="lastName error"></div>
+                <label for="email">Email</label>
+                <input id= "email" type="text" name="email" required />
+                <div class="email error"></div>
+                <label for="repeatEmail">Repeat email</label>
+                <input id= "repeatEmail" type="text" name="repeatEmail" required />
+                <div class="repeatEmail error"></div>
+                <label for="gitHub">gitHub username</label>
+                <input id= "gitHub" type="text" name="gitHub" required />
+                <div class="gitHub error"></div>
+                <label for="password">Password</label>
+                <input id= "password" type="password" name="password" required />
+                <div class="password error"></div>
+                <label for="repeatPassword">Repeat password</label>
+                <input id= "repeatPassword" type="password" name="repeatPassword" required />
+                <div class="repeatPassword error"></div>
+        <button>Sign up</button>
+    </form>
+    <p>Already registered? <a href="/login" class="btn">Log in</a></p>
+    </div>
+</div>
+
+<%- include('partials/footer'); -%>
+
+<script>
+    const form = document.querySelector('form');
+    const firstNameError = document.querySelector('.firstName.error');
+    const lastNameError = document.querySelector('.lastName.error');
+    const emailError = document.querySelector('.email.error');
+    const repeatEmailError = document.querySelector('.repeatEmail.error');
+    const gitHubError = document.querySelector('.gitHub.error');
+    const passwordError = document.querySelector('.password.error');
+    const repeatPasswordError = document.querySelector('.repeatPassword.error');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        firstNameError.textContent = '';
+        lastNameError.textContent = '';
+        emailError.textContent = '';
+        repeatEmailError.textContent = '';
+        gitHubError.textContent = '';
+        passwordError.textContent = '';
+        repeatPasswordError.textContent = '';
+
+        const firstName = form.firstName.value;
+        const lastName = form.lastName.value;
+        const email = form.email.value;
+        const repeatEmail = form.repeatEmail.value;
+        const gitHub = form.gitHub.value;
+        const password = form.password.value;
+        const repeatPassword = form.repeatPassword.value;
+
+        if (password !== repeatPassword) {
+            repeatPasswordError.textContent = "Passwords don't match";
+        } else if (email !== repeatEmail){
+            repeatEmailError.textContent = "Emails don't match";
+        } else {
+
+            try {
+                const res = await fetch('/signup', {
+                    method: 'POST',
+                    body: JSON.stringify({ firstName, lastName, email, gitHub, password }),
+                    headers: {'Content-Type': 'application/json'}
+                });
+                const data = await res.json();
+                console.log(data);
+                if (data.errors) {
+                    emailError.textContent = data.errors.email;
+                    passwordError.textContent = data.errors.password;
+                }
+                if (data.user) {
+                    location.assign('dashboard');
+                }
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+    });
+</script>
