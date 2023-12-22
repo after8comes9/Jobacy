@@ -130,7 +130,7 @@ exports.dashboardAddJob = async (req, res) => {
 // POST // ADD JOB
 
 exports.dashboardAddJobSubmit = async (req, res) => {
-  const { companyName, jobTitle, website, contactName, contactEmail, contactPhone, address, comments } = req.body;
+  const { companyName, jobTitle, website, contactName, contactEmail, contactPhone, address, status, origin, comments } = req.body;
 
   const token = req.cookies.jwt;
   const user = jwt.verify(token, jwtSecret, (err, decodedToken) => {
@@ -138,7 +138,7 @@ exports.dashboardAddJobSubmit = async (req, res) => {
   })
 
   try {
-    await Job.create({ user, companyName, jobTitle, website, contactName, contactEmail, contactPhone, address, comments });
+    await Job.create({ user, companyName, jobTitle, website, contactName, contactEmail, contactPhone, status, origin, address, comments });
     res.status(201).redirect('/dashboard');
   }
   catch(err) {
