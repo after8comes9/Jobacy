@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 const jwtSecret = process.env.JWT_SECRET;
 
 
+
+
 // GET // DASHBOARD
 
 exports.dashboard = async (req, res) => {
@@ -74,6 +76,12 @@ exports.dashboardViewJob = async (req, res) => {
 // PUT // UPDATE JOB
 
 exports.dashboardUpdateJob = async (req, res) => {
+
+  const token = req.cookies.jwt;
+  const user = jwt.verify(token, jwtSecret, (err, decodedToken) => {
+    return decodedToken.id;
+  })
+
   try {
     await Job.findOneAndUpdate(
       { _id: req.params.id },
@@ -88,7 +96,7 @@ exports.dashboardUpdateJob = async (req, res) => {
         status: req.body.status,
         comments: req.body.comments,
         updatedAt: Date.now() }
-    ).where({ user: req.user });
+    ).where({ user: user });
     res.redirect(`/dashboard/item/${req.params.id}`);
   } catch (error) {
     console.log(error);
@@ -98,8 +106,14 @@ exports.dashboardUpdateJob = async (req, res) => {
 // DELETE // DELETE JOB
 
 exports.dashboardDeleteJob = async (req, res) => {
+
+  const token = req.cookies.jwt;
+  const user = jwt.verify(token, jwtSecret, (err, decodedToken) => {
+    return decodedToken.id;
+  })
+
   try {
-    await Job.deleteOne({ _id: req.params.id }).where({ user: req.user });
+    await Job.deleteOne({ _id: req.params.id }).where({ user: user });
     res.redirect("/dashboard");
   } catch (error) {
     console.log(error);
@@ -133,6 +147,12 @@ exports.dashboardAddJobSubmit = async (req, res) => {
 }
 
 exports.editMyProfile_put = async (req, res) => {
+
+  const token = req.cookies.jwt;
+  const user = jwt.verify(token, jwtSecret, (err, decodedToken) => {
+    return decodedToken.id;
+  })
+
   try {
     await User.findOneAndUpdate(
         { _id: req.params.id },
@@ -141,7 +161,7 @@ exports.editMyProfile_put = async (req, res) => {
           email: req.body.email,
           gitHub: req.body.gitHub,
         }
-    ).where({ user: req.user });
+    ).where({ user: user });
     res.redirect(`/dashboard/myProfile/${req.params.id}`);
   } catch (error) {
     console.log(error);
