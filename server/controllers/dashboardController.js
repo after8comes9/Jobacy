@@ -51,8 +51,13 @@ exports.dashboardViewJob = async (req, res) => {
     description: "Track your job applications",
   };
 
+  const token = req.cookies.jwt;
+  const user = jwt.verify(token, jwtSecret, (err, decodedToken) => {
+    return decodedToken.id;
+  })
+
   const job = await Job.findById({ _id: req.params.id })
-    .where({ user: req.user })
+    .where({ user: user })
     .lean();
 
   if (job) {
